@@ -1,0 +1,45 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      app.openshift.io/vcs-ref: ""
+      app.openshift.io/vcs-uri: https://github.com/mullerfs/blog-django-py
+      openshift.io/generated-by: OpenShiftWebConsole
+    creationTimestamp: "2022-01-17T02:15:12Z"
+    generation: 1
+    labels:
+      app: blog-django-py
+      app.kubernetes.io/component: blog-django-py
+      app.kubernetes.io/instance: blog-django-py
+      app.kubernetes.io/name: python
+      app.kubernetes.io/part-of: blog-django-py-app
+      app.openshift.io/runtime: python
+      app.openshift.io/runtime-version: 3.8-ubi7
+    name: blog-django-py
+    namespace: fiap-aso-g20
+    resourceVersion: "22841853"
+    selfLink: /apis/image.openshift.io/v1/namespaces/fiap-aso-g20/imagestreams/blog-django-py
+    uid: 26026a89-2450-4663-9c11-351d4485d527
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/fiap-aso-g20/blog-django-py
+    publicDockerImageRepository: default-route-openshift-image-registry.apps.na46.prod.nextcle.com/fiap-aso-g20/blog-django-py
+    tags:
+    - items:
+      - created: "2022-01-17T02:47:41Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/fiap-aso-g20/blog-django-py@sha256:48d495d342247280434a3d775cf6527c9226fa01452973e36eb0065518d61197
+        generation: 1
+        image: sha256:48d495d342247280434a3d775cf6527c9226fa01452973e36eb0065518d61197
+      - created: "2022-01-17T02:16:24Z"
+        dockerImageReference: image-registry.openshift-image-registry.svc:5000/fiap-aso-g20/blog-django-py@sha256:6c33fa03bf0f93fd528dffce9660b2b3e06a50f6f921490b68c71ee96387e82a
+        generation: 1
+        image: sha256:6c33fa03bf0f93fd528dffce9660b2b3e06a50f6f921490b68c71ee96387e82a
+      tag: latest
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

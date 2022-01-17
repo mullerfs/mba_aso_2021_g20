@@ -1,0 +1,60 @@
+apiVersion: v1
+items:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: blog-django-py
+      app.kubernetes.io/component: blog-django-py
+      app.kubernetes.io/instance: blog-django-py
+      app.kubernetes.io/name: python
+      app.kubernetes.io/part-of: blog-django-py-app
+      app.openshift.io/runtime: python
+      app.openshift.io/runtime-version: 3.8-ubi7
+    name: blog-django-py
+    namespace: fiap-aso-g20
+    resourceVersion: "22841116"
+    selfLink: /apis/build.openshift.io/v1/namespaces/fiap-aso-g20/buildconfigs/blog-django-py
+    uid: 7fcdd529-c012-4173-9b98-03feb39227b9
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: blog-django-py:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: /
+      git:
+        uri: https://github.com/mullerfs/blog-django-py
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: python:3.8-ubi7
+          namespace: openshift
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - generic:
+        secretReference:
+          name: blog-django-py-generic-webhook-secret
+      type: Generic
+    - github:
+        secretReference:
+          name: blog-django-py-github-webhook-secret
+      type: GitHub
+    - imageChange:
+        lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/python@sha256:210326ea7d1a940d7e8f057cc96a6115c8443658b91a95d6c0ddc91ad80566cd
+      type: ImageChange
+    - type: ConfigChange
+  status:
+    lastVersion: 2
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
