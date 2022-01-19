@@ -3,9 +3,6 @@ items:
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
-    annotations:
-      openshift.io/host.generated: "true"
-    creationTimestamp: "2022-01-17T02:15:13Z"
     labels:
       app: blog-django-py
       app.kubernetes.io/component: blog-django-py
@@ -16,11 +13,8 @@ items:
       app.openshift.io/runtime-version: 3.8-ubi7
     name: blog-django-py
     namespace: fiap-aso-g20
-    resourceVersion: "22823048"
-    selfLink: /apis/route.openshift.io/v1/namespaces/fiap-aso-g20/routes/blog-django-py
-    uid: 6b3bdbf3-5f5f-4979-bf41-1379f5825349
   spec:
-    host: blog-django-py-fiap-aso-g20.apps.na46.prod.nextcle.com
+    host: g20.apps.na46.prod.nextcle.com
     port:
       targetPort: 8080-tcp
     to:
@@ -31,10 +25,7 @@ items:
   status:
     ingress:
     - conditions:
-      - lastTransitionTime: "2022-01-17T02:15:13Z"
-        status: "True"
-        type: Admitted
-      host: blog-django-py-fiap-aso-g20.apps.na46.prod.nextcle.com
+      host: g20.apps.na46.prod.nextcle.com
       routerCanonicalHostname: apps.na46.prod.nextcle.com
       routerName: default
       wildcardPolicy: None
