@@ -1,7 +1,7 @@
 # Arquitetura de Soluções - G20
 Trabalho de entrega da Fase
 
-# Passo a Passo?
+# Passo a Passo
 ## 1. Crie o Projeto
 Certifique-se de criar o projeto com o nome do grupo
 ``` 

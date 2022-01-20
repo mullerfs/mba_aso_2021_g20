@@ -2,7 +2,6 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: sample-database
-  namespace: fiap-aso-g20
 type: Opaque
 stringData:
   database-name: sampledb
@@ -17,10 +16,8 @@ metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewApp
     template.openshift.io/expose-uri: 'postgres://{.spec.clusterIP}:{.spec.ports[?(.name=="postgresql")].port}'
-  selfLink: /api/v1/namespaces/fiap-aso-g20/services/sample-database
   name: sample-database
   creationTimestamp: '2022-01-20T01:43:38Z'
-  namespace: fiap-aso-g20
   labels:
     app: sample-database
     app.kubernetes.io/component: sample-database
@@ -46,7 +43,6 @@ metadata:
   annotations:
     volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/cinder
   name: sample-database
-  namespace: fiap-aso-g20
   finalizers:
     - kubernetes.io/pvc-protection
   labels:
@@ -74,7 +70,6 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   annotations:
-    openshift.io/generated-by: OpenShiftNewApp
     template.alpha.openshift.io/wait-for-ready: "true"
   creationTimestamp: "2022-01-20T00:44:36Z"
   generation: 2
@@ -84,8 +79,6 @@ metadata:
     app.kubernetes.io/instance: sample-database
     template: postgresql-persistent-template
   name: sample-database
-  namespace: fiap-aso-g20
-  resourceVersion: "25542606"
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -196,7 +189,6 @@ items:
       app.kubernetes.io/component: blog-django-py
       app.kubernetes.io/instance: blog-django-py
     name: blog-django-py
-    namespace: fiap-aso-g20
   spec:
     lookupPolicy:
       local: false
@@ -218,7 +210,6 @@ items:
       app.kubernetes.io/component: blog-django-py
       app.kubernetes.io/instance: blog-django-py
     name: blog-django-py
-    namespace: fiap-aso-g20
   spec:
     failedBuildsHistoryLimit: 5
     nodeSelector: null
@@ -267,8 +258,6 @@ items:
       app.kubernetes.io/component: blog-django-py
       app.kubernetes.io/instance: blog-django-py
     name: blog-django-py
-    namespace: fiap-aso-g20
-    resourceVersion: "25645075"
   spec:
     ports:
     - name: 8080-tcp
@@ -290,7 +279,6 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: django-secrets
-  namespace: fiap-aso-g20
 type: Opaque
 stringData:
   django-user: g20
@@ -308,8 +296,9 @@ metadata:
     app: blog-django-py
     app.kubernetes.io/component: blog-django-py
     app.kubernetes.io/instance: blog-django-py
+    app.kubernetes.io/name: python
+    app.openshift.io/runtime: python
   name: blog-django-py
-  namespace: fiap-aso-g20
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -350,7 +339,7 @@ spec:
             secretKeyRef:
               key: django-password
               name: django-secrets
-        image: image-registry.openshift-image-registry.svc:5000/fiap-aso-g20/blog-django-py@sha256:8654a8dbe9e1386ca6fecd12809baf5ac3e19b636344c1a2cadd5ebe6418bcfa
+        image: quay.io/mullerfs/blog-django-py
         imagePullPolicy: IfNotPresent
         name: blog-django-py
         ports:
@@ -364,13 +353,13 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      progressDeadlineSeconds: 600
 
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: blog-django-py
-  namespace: fiap-aso-g20
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -401,9 +390,7 @@ items:
       app.openshift.io/runtime: python
       app.openshift.io/runtime-version: 3.8-ubi7
     name: blog-django-py
-    namespace: fiap-aso-g20
   spec:
-    host: g20.apps.na46.prod.nextcle.com
     port:
       targetPort: 8080-tcp
     to:
@@ -411,13 +398,6 @@ items:
       name: blog-django-py
       weight: 100
     wildcardPolicy: None
-  status:
-    ingress:
-    - conditions:
-      host: g20.apps.na46.prod.nextcle.com
-      routerCanonicalHostname: apps.na46.prod.nextcle.com
-      routerName: default
-      wildcardPolicy: None
 kind: List
 metadata:
   resourceVersion: ""
