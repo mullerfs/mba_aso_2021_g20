@@ -78,6 +78,7 @@ metadata:
     app.kubernetes.io/component: sample-database
     app.kubernetes.io/instance: sample-database
     template: postgresql-persistent-template
+    app.kubernetes.io/part-of: blog-django-py-app
   name: sample-database
 spec:
   replicas: 1
@@ -298,6 +299,7 @@ metadata:
     app.kubernetes.io/instance: blog-django-py
     app.kubernetes.io/name: python
     app.openshift.io/runtime: python
+    app.kubernetes.io/part-of: blog-django-py-app
   name: blog-django-py
 spec:
   progressDeadlineSeconds: 600
