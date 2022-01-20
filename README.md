@@ -1,12 +1,12 @@
 # Arquitetura de Soluções - G20
 Trabalho de entrega da Fase
 
-# QuerTudo automático? 
+# Quer Tudo automático? 
 ```
 ./run.sh
 ```
-# Passo a Passo
-## 1. Antes de começar
+# Quer ir no Passo a Passo?
+## 1. Crie o Projeto
 Certifique-se de criar o projeto com o nome do grupo
 ``` 
 oc new-project fiap-aso-g20

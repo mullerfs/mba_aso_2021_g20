@@ -33,6 +33,23 @@ spec:
           value: purple
         - name: BLOG_SITE_NAME
           value: G20 - ASO - 2021/2022
+        - name: DATABASE_URL
+          value: postgresql://sampledb:sampledb@sample-database:5432/sampledb
+        - name: DJANGO_ADMIN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: django-user
+              name: django-secrets
+        - name: DJANGO_ADMIN_EMAIL
+          valueFrom:
+            secretKeyRef:
+              key: django-email
+              name: django-secrets
+        - name: DJANGO_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: django-password
+              name: django-secrets
         image: image-registry.openshift-image-registry.svc:5000/fiap-aso-g20/blog-django-py@sha256:8654a8dbe9e1386ca6fecd12809baf5ac3e19b636344c1a2cadd5ebe6418bcfa
         imagePullPolicy: IfNotPresent
         name: blog-django-py
@@ -42,6 +59,10 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", '/opt/app-root/src/setup']
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
