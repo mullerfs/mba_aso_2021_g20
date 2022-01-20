@@ -1,6 +1,12 @@
 # Arquitetura de Soluções - G20
 Trabalho de entrega da Fase
 
+* Müller Fernandes - RM 341097
+* Lilian Barbosa - RM341177
+* Enilson dos Santos - RM34126
+* Vinicius
+
+
 # Passo a Passo
 ## 1. Crie o Projeto
 Certifique-se de criar o projeto com o nome do grupo
