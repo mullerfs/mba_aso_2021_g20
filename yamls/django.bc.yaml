@@ -1,0 +1,51 @@
+apiVersion: v1
+items:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2022-01-20T02:37:31Z"
+    labels:
+      app: blog-django-py
+      app.kubernetes.io/component: blog-django-py
+      app.kubernetes.io/instance: blog-django-py
+    name: blog-django-py
+    namespace: fiap-aso-g20
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: blog-django-py:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        uri: https://github.com/mullerfs/blog-django-py
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: python:3.8
+          namespace: openshift
+      type: Source
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: W71gtlUGi5uFkpFVic_a
+      type: GitHub
+    - generic:
+        secret: C9Qf5WH5teOKXQkEBVCG
+      type: Generic
+    - type: ConfigChange
+    - imageChange:
+        lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/python@sha256:210326ea7d1a940d7e8f057cc96a6115c8443658b91a95d6c0ddc91ad80566cd
+      type: ImageChanges
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

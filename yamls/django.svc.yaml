@@ -1,0 +1,28 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: blog-django-py
+      app.kubernetes.io/component: blog-django-py
+      app.kubernetes.io/instance: blog-django-py
+    name: blog-django-py
+    namespace: fiap-aso-g20
+    resourceVersion: "25645075"
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      deployment: blog-django-py
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

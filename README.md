@@ -1,33 +1,28 @@
 # Arquitetura de Soluções - G20
 Trabalho de entrega da Fase
 
-# Quer Tudo automático? 
-```
-./run.sh
-```
-# Quer ir no Passo a Passo?
+# Passo a Passo?
 ## 1. Crie o Projeto
 Certifique-se de criar o projeto com o nome do grupo
 ``` 
 oc new-project fiap-aso-g20
 ```
 
-## 2. Criação da Aplicação
+## 2. Faça o Deploy
 
 ```
-oc new-app python:3.8~https://github.com/mullerfs/blog-django-py
+oc create -f full.yaml
 ```
 
-## 3. Subindo Banco de dados
-
-
-## 4. Aplicando Deployment com Enviroment variables
-
+## 3. Inicie o banco de dados
 ```
- oc apply -f deployments.apps.yaml
+oc exec `oc get pods -l deployment=blog-django-py|cut -d' ' -f1|tail -n1` -- /bin/sh -c ./setup
 ```
-## 5. Aplicando Rotas
+## 4. Acesse Web
+# Saiba mais!
 
-```
- oc apply -f routes.yaml
-```
+Repositório do Source Code: https://github.com/mullerfs/blog-django-py
+
+Repositório das Configurações: https://github.com/mullerfs/mba_aso_2021_g20
+
+Baixe a imagem: ``docker pull quay.io/mullerfs/blog-django-py``
