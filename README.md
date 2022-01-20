@@ -15,8 +15,19 @@ oc create -f full.yaml
 ```
 
 ## 3. Inicie o banco de dados
+
+### 3.1 Se Linux
 ```
 oc exec `oc get pods -l deployment=blog-django-py|cut -d' ' -f1|tail -n1` -- /bin/sh -c ./setup
+```
+
+### 3.2 Se Windows
+```
+ .\oc.exe get pods -l deployment=blog-django-py
+```
+Selecione o nome de um entre os dois pods listados
+```
+.\oc.exe exec <SEU_POD_NOME_AQUI> -- /bin/sh -c ./setup
 ```
 ## 4. Acesse Web
 # Saiba mais!
